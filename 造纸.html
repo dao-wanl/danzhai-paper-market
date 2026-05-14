@@ -826,6 +826,7 @@
         <div class="result-icon">🎁</div>
         <h2>材料包已加入心愿单</h2>
         <p>
+            <b style="font-size:18px;color:var(--accent-dark);">你的专属编号：<span id="user-uid-diy">-</span></b><br><br>
             你的搭配：<b id="diy-summary">-</b><br><br>
             我们的集市摊位就在现场，<br>出示此页面即可领取专属优惠。<br><br>
             也可以扫码添加微信，<br>预约邮寄到家～
@@ -845,6 +846,7 @@
         <div class="result-icon">🏪</div>
         <h2>来摊位找我们吧</h2>
         <p>
+            <b style="font-size:18px;color:var(--accent-dark);">你的专属编号：<span id="user-uid-shop">-</span></b><br><br>
             你的搭配：<b id="shop-summary">-</b><br><br>
             摊位位置：集市主通道第3号摊位<br>
             （认准"丹寨石桥造纸"招牌）<br><br>
@@ -926,6 +928,7 @@
     }
 
     // ========== 最终选择：上传数据到 Google Sheets ==========
+    let currentUserId = '';
     async function submitFinalChoice(choiceName) {
         // 记录最终选择
         selections.finalName = choiceName;
@@ -937,7 +940,8 @@
 
         // 准备上传数据
         const uploadData = {
-            userId: userId,
+            
+            userId: currentUserId,
             timestamp: new Date().toISOString(),
             paperType: selections.paperName,
             paperCode: selections.paperType,
@@ -973,6 +977,9 @@
                 document.getElementById('diy-summary').textContent = summary;
                 document.getElementById('shop-summary').textContent = summary;
                 
+                document.getElementById('user-uid-diy').textContent = currentUserId;
+                document.getElementById('user-uid-shop').textContent = currentUserId;
+                
                 goTo(choiceName === 'DIY材料包' ? 'result-diy' : 'result-shop');
             }, 1000);
 
@@ -998,4 +1005,5 @@
 </script>
 
 </body>
+</html>
 </html>
