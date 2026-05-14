@@ -935,7 +935,7 @@
         selections.finalChoice = CODE_MAP[choiceName] || '';
 
         // 生成唯一用户ID
-        curreentUserId = 'U' + new Date().toISOString().slice(0,10).replace(/-/g,'') 
+        currentUserId = 'U' + new Date().toISOString().slice(0,10).replace(/-/g,'') 
                      + '_' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
 
         // 准备上传数据
