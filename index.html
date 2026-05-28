@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>石桥古法造纸体验 | 手工集市体验</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         :root {
             --paper: #F5F0E8;
             --paper-dark: #E8E0D0;
@@ -18,6 +26,7 @@
             --green: #6B8E5A;
             --red: #B85C4A;
         }
+
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background: var(--paper);
@@ -25,34 +34,54 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
-        .page { display: none; min-height: 100vh; }
-        .page.active { display: flex; flex-direction: column; }
+
+        .page {
+            display: none;
+            min-height: 100vh;
+        }
+
+        .page.active {
+            display: flex;
+            flex-direction: column;
+        }
 
         /* ===== 首页 ===== */
         #home {
             position: relative;
             justify-content: flex-end;
         }
+
         .hero-img {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
             z-index: 0;
             filter: brightness(0.7);
         }
+
         .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.5) 60%, rgba(0,0,0,0.7) 100%);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.5) 60%, rgba(0, 0, 0, 0.7) 100%);
             z-index: 1;
         }
+
         .hero-content {
-            position: relative; z-index: 2;
+            position: relative;
+            z-index: 2;
             padding: 0 24px 48px;
             text-align: center;
         }
+
         .hero-badge {
             display: inline-block;
-            background: rgba(196,168,130,0.9);
+            background: rgba(196, 168, 130, 0.9);
             color: #fff;
             padding: 6px 16px;
             border-radius: 20px;
@@ -61,20 +90,23 @@
             margin-bottom: 16px;
             font-weight: 500;
         }
+
         .hero-title {
             font-family: 'Noto Serif SC', serif;
             font-size: 28px;
             color: #fff;
             line-height: 1.5;
             margin-bottom: 8px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
+
         .hero-sub {
             font-size: 15px;
-            color: rgba(255,255,255,0.85);
+            color: rgba(255, 255, 255, 0.85);
             margin-bottom: 32px;
             line-height: 1.6;
         }
+
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -82,6 +114,7 @@
             max-width: 340px;
             margin: 0 auto;
         }
+
         .btn-primary {
             display: block;
             width: 100%;
@@ -95,25 +128,37 @@
             text-align: center;
             text-decoration: none;
         }
+
         .btn-teach {
             background: var(--accent);
             color: #fff;
-            box-shadow: 0 4px 16px rgba(196,168,130,0.4);
+            box-shadow: 0 4px 16px rgba(196, 168, 130, 0.4);
         }
-        .btn-teach:hover { background: var(--accent-dark); transform: translateY(-2px); }
+
+        .btn-teach:hover {
+            background: var(--accent-dark);
+            transform: translateY(-2px);
+        }
+
         .btn-shop {
-            background: rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.15);
             color: #fff;
-            border: 1.5px solid rgba(255,255,255,0.4);
+            border: 1.5px solid rgba(255, 255, 255, 0.4);
             backdrop-filter: blur(8px);
         }
-        .btn-shop:hover { background: rgba(255,255,255,0.25); transform: translateY(-2px); }
+
+        .btn-shop:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
+        }
+
         .home-footer {
-            position: relative; z-index: 2;
+            position: relative;
+            z-index: 2;
             text-align: center;
             padding-bottom: 16px;
             font-size: 12px;
-            color: rgba(255,255,255,0.5);
+            color: rgba(255, 255, 255, 0.5);
         }
 
         /* ===== 顶部导航栏 ===== */
@@ -122,22 +167,85 @@
             align-items: center;
             justify-content: space-between;
             padding: 12px 20px;
-            background: rgba(245,240,232,0.95);
+            background: rgba(245, 240, 232, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
-            top: 0; z-index: 100;
+            top: 0;
+            z-index: 100;
             border-bottom: 1px solid var(--paper-dark);
         }
+
         .top-bar .back {
-            display: flex; align-items: center; gap: 4px;
-            color: var(--ink-light); font-size: 14px;
-            background: none; border: none; cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            color: var(--ink-light);
+            font-size: 14px;
+            background: none;
+            border: none;
+            cursor: pointer;
         }
+
         .top-bar .title {
             font-family: 'Noto Serif SC', serif;
-            font-size: 17px; font-weight: 600;
+            font-size: 17px;
+            font-weight: 600;
         }
-        .top-bar .right { width: 40px; }
+
+        .top-bar .right {
+            width: 40px;
+        }
+
+        /* 展开按钮 */
+        .expand-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 12px;
+            padding: 8px 16px;
+            background: var(--paper-dark);
+            border: none;
+            border-radius: 20px;
+            font-size: 13px;
+            color: var(--ink-light);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .expand-btn:hover {
+            background: var(--accent);
+            color: #fff;
+        }
+
+        .expand-btn .arrow {
+            transition: transform 0.3s;
+            display: inline-block;
+        }
+
+        .expand-btn.active .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* 展开的内容区域 */
+        .expand-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+            border-radius: 12px;
+            margin-top: 0;
+        }
+
+        .expand-content.show {
+            max-height: 600px;
+            /* 足够显示大图 */
+            margin-top: 12px;
+        }
+
+        .expand-content img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+        }
 
         /* ===== 流程演示页 ===== */
         .process-container {
@@ -148,60 +256,76 @@
             margin: 0 auto;
             width: 100%;
         }
+
         .process-intro {
             text-align: center;
             margin-bottom: 28px;
         }
+
         .process-intro h2 {
             font-family: 'Noto Serif SC', serif;
             font-size: 22px;
             margin-bottom: 8px;
         }
+
         .process-intro p {
-            font-size: 14px; color: var(--ink-light);
+            font-size: 14px;
+            color: var(--ink-light);
         }
+
         .step-card {
             background: #fff;
             border-radius: 16px;
             overflow: hidden;
             margin-bottom: 20px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             border: 1px solid var(--paper-dark);
         }
+
         .step-img {
-            width: 100%; height: 200px;
+            width: 100%;
+            height: 200px;
             object-fit: cover;
             display: block;
         }
+
         .step-body {
             padding: 20px;
         }
+
         .step-num {
             display: inline-flex;
-            align-items: center; justify-content: center;
-            width: 32px; height: 32px;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
             background: var(--accent);
             color: #fff;
             border-radius: 50%;
-            font-size: 14px; font-weight: 700;
+            font-size: 14px;
+            font-weight: 700;
             margin-bottom: 10px;
         }
+
         .step-title {
             font-family: 'Noto Serif SC', serif;
             font-size: 17px;
             margin-bottom: 8px;
         }
+
         .step-desc {
             font-size: 14px;
             color: var(--ink-light);
             line-height: 1.7;
         }
+
         .step-arrow {
             text-align: center;
             color: var(--accent);
             font-size: 24px;
             margin: 8px 0;
         }
+
         .process-cta {
             background: linear-gradient(135deg, var(--accent), var(--accent-dark));
             color: #fff;
@@ -211,20 +335,23 @@
             margin-top: 8px;
             margin-bottom: 40px;
         }
+
         .process-cta h3 {
             font-family: 'Noto Serif SC', serif;
             font-size: 18px;
             margin-bottom: 8px;
         }
+
         .process-cta p {
             font-size: 14px;
             opacity: 0.9;
             margin-bottom: 16px;
         }
+
         .process-cta .btn-primary {
             background: #fff;
             color: var(--accent-dark);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
         /* ===== 选品页 ===== */
@@ -237,15 +364,18 @@
             margin: 0 auto;
             width: 100%;
         }
+
         .picker-header {
             text-align: center;
             margin-bottom: 20px;
         }
+
         .picker-header h2 {
             font-family: 'Noto Serif SC', serif;
             font-size: 20px;
             margin-bottom: 6px;
         }
+
         .picker-header .round-tag {
             display: inline-block;
             background: var(--accent);
@@ -255,6 +385,7 @@
             font-size: 12px;
             font-weight: 500;
         }
+
         .picker-scroll {
             flex: 1;
             overflow-x: auto;
@@ -266,7 +397,11 @@
             -webkit-overflow-scrolling: touch;
             scrollbar-width: none;
         }
-        .picker-scroll::-webkit-scrollbar { display: none; }
+
+        .picker-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
         .option-card {
             flex: 0 0 72%;
             max-width: 280px;
@@ -274,34 +409,40 @@
             background: #fff;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             border: 1px solid var(--paper-dark);
             display: flex;
             flex-direction: column;
         }
+
         .option-img {
-            width: 100%; height: 220px;
+            width: 100%;
+            height: 220px;
             object-fit: cover;
             display: block;
         }
+
         .option-body {
             padding: 16px;
             flex: 1;
             display: flex;
             flex-direction: column;
         }
+
         .option-name {
             font-family: 'Noto Serif SC', serif;
             font-size: 16px;
             font-weight: 600;
             margin-bottom: 6px;
         }
+
         .option-desc {
             font-size: 13px;
             color: var(--ink-light);
             line-height: 1.6;
             flex: 1;
         }
+
         .option-btn {
             margin-top: 12px;
             width: 100%;
@@ -315,20 +456,31 @@
             cursor: pointer;
             transition: all 0.2s;
         }
-        .option-btn:hover { background: var(--accent-dark); }
+
+        .option-btn:hover {
+            background: var(--accent-dark);
+        }
+
         .picker-dots {
             display: flex;
             justify-content: center;
             gap: 6px;
             margin-bottom: 12px;
         }
+
         .dot {
-            width: 8px; height: 8px;
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
             background: var(--paper-dark);
             transition: all 0.3s;
         }
-        .dot.active { background: var(--accent); width: 20px; border-radius: 4px; }
+
+        .dot.active {
+            background: var(--accent);
+            width: 20px;
+            border-radius: 4px;
+        }
 
         /* ===== 选品总结页 ===== */
         .summary-box {
@@ -337,14 +489,16 @@
             padding: 20px;
             margin-bottom: 20px;
             border: 1px solid var(--paper-dark);
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
         }
+
         .summary-box h3 {
             font-family: 'Noto Serif SC', serif;
             font-size: 16px;
             margin-bottom: 12px;
             color: var(--accent-dark);
         }
+
         .summary-item {
             display: flex;
             align-items: center;
@@ -353,46 +507,61 @@
             border-bottom: 1px dashed var(--paper-dark);
             font-size: 14px;
         }
-        .summary-item:last-child { border-bottom: none; }
+
+        .summary-item:last-child {
+            border-bottom: none;
+        }
+
         .summary-item .label {
             color: var(--ink-light);
             min-width: 60px;
         }
+
         .summary-item .value {
             font-weight: 500;
         }
+
         .final-options {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
+
         .final-card {
             background: #fff;
             border-radius: 16px;
             overflow: hidden;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
             border: 1px solid var(--paper-dark);
         }
+
         .final-img {
-            width: 100%; height: 160px;
+            width: 100%;
+            height: 160px;
             object-fit: cover;
             display: block;
         }
+
         .final-body {
             padding: 18px;
         }
+
         .final-body h3 {
             font-family: 'Noto Serif SC', serif;
             font-size: 17px;
             margin-bottom: 6px;
         }
+
         .final-body p {
             font-size: 14px;
             color: var(--ink-light);
             line-height: 1.6;
             margin-bottom: 14px;
         }
-        .final-body .option-btn { margin-top: 0; }
+
+        .final-body .option-btn {
+            margin-top: 0;
+        }
 
         /* ===== 修改选择浮层 ===== */
         .edit-bar {
@@ -402,6 +571,7 @@
             gap: 8px;
             margin-bottom: 16px;
         }
+
         .edit-bar button {
             background: var(--paper-dark);
             border: none;
@@ -411,7 +581,11 @@
             color: var(--ink-light);
             cursor: pointer;
         }
-        .edit-bar button:hover { background: var(--accent); color: #fff; }
+
+        .edit-bar button:hover {
+            background: var(--accent);
+            color: #fff;
+        }
 
         /* ===== 结果页 ===== */
         .result-page {
@@ -423,15 +597,18 @@
             justify-content: center;
             align-items: center;
         }
+
         .result-icon {
             font-size: 64px;
             margin-bottom: 20px;
         }
+
         .result-page h2 {
             font-family: 'Noto Serif SC', serif;
             font-size: 24px;
             margin-bottom: 12px;
         }
+
         .result-page p {
             font-size: 15px;
             color: var(--ink-light);
@@ -439,9 +616,11 @@
             max-width: 320px;
             margin-bottom: 32px;
         }
+
         .result-page .btn-primary {
             max-width: 280px;
         }
+
 
         /* ===== 图片占位 ===== */
         .img-placeholder {
@@ -456,553 +635,634 @@
         }
 
         @media (min-width: 640px) {
-            .hero-title { font-size: 36px; }
-            .btn-group { flex-direction: row; max-width: 480px; }
-            .option-card { flex: 0 0 260px; }
-            .final-options { flex-direction: row; }
-            .final-card { flex: 1; }
+            .hero-title {
+                font-size: 36px;
+            }
+
+            .btn-group {
+                flex-direction: row;
+                max-width: 480px;
+            }
+
+            .option-card {
+                flex: 0 0 260px;
+            }
+
+            .final-options {
+                flex-direction: row;
+            }
+
+            .final-card {
+                flex: 1;
+            }
         }
     </style>
-<base target="_blank">
+    <base target="_blank">
 </head>
+
 <body>
 
-    
-<!-- ==================== 首页 ==================== -->
-<div id="home" class="page active">
-    <img id="heroImage" class="hero-img" src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/zt.jpg" alt="丹寨石桥古法造纸">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <div class="hero-badge">中华工匠·手工集市活动</div>
-        <h1 class="hero-title">石桥古法造纸体验</h1>
-        <p class="hero-sub">亲手造一张属于自己的纸<br>揉进贵州山水的灵气，与指尖的温度</p>
-        <div class="btn-group">
-            <button class="btn-primary btn-teach" onclick="goTo('process')"> 造纸流程演示教学指导</button>
-            <button class="btn-primary btn-shop" onclick="goTo('picker1')"> 选品引导</button>
-        </div>
-    </div>
-    <div class="home-footer">贵州丹寨 · 石桥古法造纸</div>
-</div>
 
-<!-- ==================== 流程演示页 ==================== -->
-<div id="process" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('home')">← 返回首页</button>
-        <div class="title">古法造纸流程</div>
-        <div class="right"></div>
-    </div>
-    <div class="process-container">
-        <div class="process-intro">
-            <h2>四步造一张纸</h2>
-            <p>丹寨石桥村传承千年的古法技艺，简单四步，感受手工的温度</p>
+    <!-- ==================== 首页 ==================== -->
+    <div id="home" class="page active">
+        <img id="heroImage" class="hero-img"
+            src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/zt.jpg" alt="丹寨石桥古法造纸">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge">中华工匠·手工集市活动</div>
+            <h1 class="hero-title">石桥古法造纸体验</h1>
+            <p class="hero-sub">亲手造一张属于自己的纸<br>揉进贵州山水的灵气，与指尖的温度</p>
+            <div class="btn-group">
+                <button class="btn-primary btn-teach" onclick="goTo('process')"> 造纸流程演示教学指导</button>
+                <button class="btn-primary btn-shop" onclick="goTo('picker1')"> 选品引导</button>
+            </div>
         </div>
+        <div class="home-footer">贵州丹寨 · 石桥古法造纸</div>
+    </div>
 
-        <!-- 步骤1 -->
-        <div class="step-card">
-            <div class="step-img img-placeholder" style="height:220px;">
+    <!-- ==================== 流程演示页 ==================== -->
+    <div id="process" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('home')">← 返回首页</button>
+            <div class="title">古法造纸流程</div>
+            <div class="right"></div>
+        </div>
+        <div class="process-container">
+            <div class="process-intro">
+                <h2>四步造一张纸</h2>
+                <p>丹寨石桥村传承千年的古法技艺，简单四步，感受手工的温度</p>
+            </div>
+
+            <!-- 步骤1 -->
+            <div class="step-card">
+                <div class="step-img img-placeholder" style="height:220px;">
                     <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/树皮.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-            </div>
-            <div class="step-body">
-                <div class="step-num">1</div>
-                <div class="step-title">河边采草 · 收集原料</div>
-                <div class="step-desc">
-                    选用丹寨当地常见的构树皮、山麻杆等天然原料。清晨去河边采集，带着露水的植物纤维最柔软，造出的纸也最温润。
+                </div>
+                <div class="step-body">
+                    <div class="step-num">1</div>
+                    <div class="step-title">河边采草 · 收集原料</div>
+                    <div class="step-desc">选用丹寨当地常见的构树皮、山麻杆等天然原料。清晨去河边采集，带着露水的植物纤维最柔软，造出的纸也最温润。</div>
+                    <button class="expand-btn" onclick="toggleExpand(this, 'expand1')">
+                        <span class="arrow">▼</span><span class="text">查看详细图解</span>
+                    </button>
+                    <div class="expand-content" id="expand1">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/造纸材料.jpg" alt="材料包中造纸原料">
+                        <p style="font-size:12px;color:var(--ink-light);margin-top:8px;text-align:center;">本材料包提供造纸原料200克，约能造5-6张的纸
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="step-arrow">↓</div>
 
-        <!-- 步骤2 -->
-        <div class="step-card">
-            <div class="step-img img-placeholder" style="height:220px;">
+            <!-- 步骤2 -->
+            <div class="step-card">
+                <div class="step-img img-placeholder" style="height:220px;">
                     <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/打浆1.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-            </div>
-            <div class="step-body">
-                <div class="step-num">2</div>
-                <div class="step-title">捣泡分解 · 化为纸浆</div>
-                <div class="step-desc">
-                    将原料放入水中浸泡数日，再用木槌反复捣打，直到坚硬的树皮变成绵软的纸浆。这一步最考验耐心，也是纸张韧性的秘密。
+                </div>
+                <div class="step-body">
+                    <div class="step-num">2</div>
+                    <div class="step-title">捣泡分解 · 化为纸浆</div>
+                    <div class="step-desc">将原料放入水中浸泡数日，再用木槌反复捣打，直到坚硬的树皮变成绵软的纸浆。这一步最考验耐心，也是纸张韧性的秘密。</div>
+                    <button class="expand-btn" onclick="toggleExpand(this, 'expand2')">
+                        <span class="arrow">▼</span><span class="text">查看材料包对应图解</span>
+                    </button>
+                    <div class="expand-content" id="expand2">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/捣泡分解.jpg" alt="细节演示">
+                        <p style="font-size:12px;color:var(--ink-light);margin-top:8px;text-align:center;">
+                            用木勺搅拌，直至原料完全分解</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="step-arrow">↓</div>
 
-        <!-- 步骤3 -->
-        <div class="step-card">
-            <div class="step-img img-placeholder" style="height:220px;">
+            <!-- 步骤3 -->
+            <div class="step-card">
+                <div class="step-img img-placeholder" style="height:220px;">
                     <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/抄纸.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-            </div>
-            <div class="step-body">
-                <div class="step-num">3</div>
-                <div class="step-title">捞纸成型 · 一帘清风</div>
-                <div class="step-desc">
-                    用竹编捞纸帘轻轻浸入纸浆池，匀速抬起。纤维均匀附着在帘上，厚薄全凭手感——这是造纸最迷人的一刻，也是千年技艺的核心。
+                </div>
+                <div class="step-body">
+                    <div class="step-num">3</div>
+                    <div class="step-title">捞纸成型 · 一帘清风</div>
+                    <div class="step-desc">用竹编捞纸帘轻轻浸入纸浆池，匀速抬起。纤维均匀附着在帘上，厚薄全凭手感——这是造纸最迷人的一刻，也是千年技艺的核心。</div>
+                    <button class="expand-btn" onclick="toggleExpand(this, 'expand3')">
+                        <span class="arrow">▼</span><span class="text">查看材料包对应图解</span>
+                    </button>
+                    <div class="expand-content" id="expand3">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/捞纸.jpg" alt="捞纸细节">
+                        <p style="font-size:12px;color:var(--ink-light);margin-top:8px;text-align:center;">捞纸角度决定纸张厚薄
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="step-arrow">↓</div>
 
-        <!-- 步骤4 -->
-        <div class="step-card">
-            <div class="step-img img-placeholder" style="height:220px;">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/晒纸.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-            </div>
-            <div class="step-body">
-                <div class="step-num">4</div>
-                <div class="step-title">晾干成纸 · 指尖有光</div>
-                <div class="step-desc">
-                    将湿纸轻轻揭下，贴在木板上自然晾干。一张带着植物纹理、厚薄不均、边缘微微卷起的手工纸就此诞生—。它并不完美，却独一无二。
+            <!-- 步骤4 -->
+            <div class="step-card">
+                <div class="step-img img-placeholder" style="height:220px;">
+                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/晾晒.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                </div>
+                <div class="step-body">
+                    <div class="step-num">4</div>
+                    <div class="step-title">晾干成纸 · 指尖有光</div>
+                    <div class="step-desc">将湿纸轻轻揭下，贴在木板上自然晾干。一张带着植物纹理、厚薄不均、边缘微微卷起的手工纸就此诞生—。它并不完美，却独一无二。</div>
+                    <button class="expand-btn" onclick="toggleExpand(this, 'expand4')">
+                        <span class="arrow">▼</span><span class="text">查看材料包对应图解</span>
+                    </button>
+                    <div class="expand-content" id="expand4">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/晒纸.jpg" alt="晾晒细节">
+                        <p style="font-size:12px;color:var(--ink-light);margin-top:8px;text-align:center;">自然晾干需要2-3小时
+                        </p>
+                    </div>
                 </div>
             </div>
-        </div>
-
-        <!-- 流程结束引导 -->
-        <div class="process-cta">
-            <h3>想亲手试一试吗？</h3>
-            <p>我们为你准备了手工纸产品，<br>在集市摊位就能带走，带走丹寨的味道。</p>
-            <button class="btn-primary" onclick="goTo('picker1')"> 去选品，造一款喜欢的纸</button>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== 选品：纸张类型 ==================== -->
-<div id="picker1" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('home')">← 返回首页</button>
-        <div class="title">选品引导</div>
-        <div class="right"></div>
-    </div>
-    <div class="picker-container">
-        <div class="picker-header">
-            <div class="round-tag">第 1 轮 / 共 4 轮</div>
-            <h2>先选一款纸的样子</h2>
-        </div>
-        <div class="picker-dots">
-            <div class="dot active"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <div class="picker-scroll" id="scroll1">
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/草纸.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="option-body">
-                    <div class="option-name">普通草纸</div>
-                    <div class="option-desc">古法基础款，质感粗糙自然。带着植物纤维的原始肌理，写字有沙沙声，传统味道！</div>
-                    <button class="option-btn" onclick="selectOption(1, '普通草纸')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/hc.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="option-body">
-                    <div class="option-name">花草纸</div>
-                    <div class="option-desc">自然清新，自带花香肌理。干花嵌在纸浆中，每一张都是季节的礼物，留下一张书签和信纸！</div>
-                    <button class="option-btn" onclick="selectOption(1, '花草纸')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/jybz.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="option-body">
-                    <div class="option-name">金箔银箔纸</div>
-                    <div class="option-desc">光泽感强，适配个性创作。金箔碎片随机分布，像把星空揉进纸里，来做手账和装饰！</div>
-                    <button class="option-btn" onclick="selectOption(1, '金箔银箔纸')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/个性彩纸.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="option-body">
-                    <div class="option-name">个性彩纸</div>
-                    <div class="option-desc">适配多元DIY需求。大胆配色，打破传统印象，做拼贴、做装置、做潮玩周边！</div>
-                    <button class="option-btn" onclick="selectOption(1, '个性彩纸')">选择这款</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== 选品：香型 ==================== -->
-<div id="picker2" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('home')">← 返回首页</button>
-        <div class="title">选品引导</div>
-        <div class="right"></div>
-    </div>
-    <div class="picker-container">
-        <div class="picker-header">
-            <div class="round-tag">第 2 轮 / 共 4 轮</div>
-            <h2>再选一种纸的味道</h2>
-        </div>
-        <div class="picker-dots">
-            <div class="dot"></div><div class="dot active"></div><div class="dot"></div><div class="dot"></div>
-        </div>
-        <div class="picker-scroll" id="scroll2">
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/茶叶.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="option-body">
-                    <div class="option-name">茶香</div>
-                    <div class="option-desc">淡雅茶香，自然治愈。像雨后茶园的气息，写字时鼻尖萦绕着龙井的清香，让人心静。</div>
-                    <button class="option-btn" onclick="selectOption(2, '茶香')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/咖啡.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="option-body">
-                    <div class="option-name">咖啡香</div>
-                    <div class="option-desc">浓郁醇厚，文艺感拉满。烘焙咖啡豆的香气渗入纸纤维，像把咖啡馆的午后装进口袋。</div>
-                    <button class="option-btn" onclick="selectOption(2, '咖啡香')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/草纸.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                
-                </div>
-                <div class="option-body">
-                    <div class="option-name">无香</div>
-                    <div class="option-desc">纯粹纸香，适配书写、绘画。没有任何添加，只有植物纤维本身的淡淡草木味，最百搭。</div>
-                    <button class="option-btn" onclick="selectOption(2, '无香')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/调香.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                
-                </div>
-                <div class="option-body">
-                    <div class="option-name">DIY香型</div>
-                    <div class="option-desc">可自行搭配香型，打造专属气味。材料包里附带香精油，按喜好滴入纸浆，属于你的独家记忆。</div>
-                    <button class="option-btn" onclick="selectOption(2, 'DIY香型')">选择这款</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== 选品：用途 ==================== -->
-<div id="picker3" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('home')">← 返回首页</button>
-        <div class="title">选品引导</div>
-        <div class="right"></div>
-    </div>
-    <div class="picker-container">
-        <div class="picker-header">
-            <div class="round-tag">第 3 轮 / 共 4 轮</div>
-            <h2>打算拿它做什么？</h2>
-        </div>
-        <div class="picker-dots">
-            <div class="dot"></div><div class="dot"></div><div class="dot active"></div><div class="dot"></div>
-        </div>
-        <div class="picker-scroll" id="scroll3">
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/书法.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                
-                </div>
-                <div class="option-body">
-                    <div class="option-name">书法</div>
-                    <div class="option-desc">适配毛笔、钢笔书写，质感独特。纤维粗糙让墨色有层次，写出的字有"飞白"效果，越写越有味道。</div>
-                    <button class="option-btn" onclick="selectOption(3, '书写纸')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/shouz .png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                
-                </div>
-                <div class="option-body">
-                    <div class="option-name">手账本</div>
-                    <div class="option-desc">便携实用，记录生活点滴。手工纸内页让每一页都有温度，贴票据、画速写、写随笔都很合适。</div>
-                    <button class="option-btn" onclick="selectOption(3, '手账本')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/bxt.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                
-                </div>
-                <div class="option-body">
-                    <div class="option-name">书签</div>
-                    <div class="option-desc">小巧精致，可搭配干花、印章。夹在书里每次翻页都能遇见，是读书人最温柔的仪式感。</div>
-                    <button class="option-btn" onclick="selectOption(3, '书签')">选择这款</button>
-                </div>
-            </div>
-            <div class="option-card">
-                <div class="option-img img-placeholder">
-                     <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/冰箱贴.jpg" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                
-                </div>
-                <div class="option-body">
-                    <div class="option-name">冰箱贴</div>
-                    <div class="option-desc">可爱实用，装饰家居。手工纸做底，配上磁吸背板，每天开冰箱都能看见自己的手作成果。</div>
-                    <button class="option-btn" onclick="selectOption(3, '冰箱贴')">选择这款</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== 选品：最终选择 ==================== -->
-<div id="picker4" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('home')">← 返回首页</button>
-        <div class="title">最终选择</div>
-        <div class="right"></div>
-    </div>
-    <div class="picker-container">
-        <div class="picker-header">
-            <div class="round-tag">第 4 轮 / 共 4 轮</div>
-            <h2>你的专属搭配已生成</h2>
-        </div>
-
-        <div class="summary-box">
-            <h3>你的选择</h3>
-            <div class="summary-item">
-                <span class="label">纸张</span>
-                <span class="value" id="sum1">-</span>
-            </div>
-            <div class="summary-item">
-                <span class="label">香型</span>
-                <span class="value" id="sum2">-</span>
-            </div>
-            <div class="summary-item">
-                <span class="label">用途</span>
-                <span class="value" id="sum3">-</span>
-            </div>
-        </div>
-
-        <div class="edit-bar">
-            <button onclick="goTo('picker1')">修改纸张</button>
-            <button onclick="goTo('picker2')">修改香型</button>
-            <button onclick="goTo('picker3')">修改用途</button>
-        </div>
-
-        <!-- 在 picker4 页面中 -->
-
-        <div class="final-options">
-            <div class="final-card">
-                <div class="final-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/bxt.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="final-body">
-                    <h3>带走材料包，亲手造纸</h3>
-                    <p>带走全套DIY造纸材料包，回家复刻丹寨古法造纸。包含原料、工具、说明书，零基础也能造出专属手工纸。</p>
-                    <!-- 关键修改：调用 submitFinalChoice -->
-                    <button class="option-btn" onclick="submitFinalChoice('DIY材料包')">选择DIY材料包</button>
-                </div>
-            </div>
-            <div class="final-card">
-                <div class="final-img img-placeholder">
-                    <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/bxt.png" style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
-                </div>
-                <div class="final-body">
-                    <h3>去集市摊位，挑成品</h3>
-                    <p>和我们集市摊位上心仪的手工纸物件"对话"吧～现场挑选、现场带走，还能和摊主聊聊造纸的故事。</p>
-                    <!-- 关键修改：调用 submitFinalChoice -->
-                    <button class="option-btn" onclick="submitFinalChoice('购买成品')">选择购买成品</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- ==================== 结果页：DIY材料包 ==================== -->
-<div id="result-diy" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('picker4')">← 返回修改</button>
-        <div class="title">确认订单</div>
-        <div class="right"></div>
-    </div>
-    <div class="result-page">
-        <div class="result-icon">🎁</div>
-        <h2>材料包已加入心愿单</h2>
-        <p>
-            <b style="font-size:18px;color:var(--accent-dark);">你的专属编号：<span id="user-uid-diy">-</span></b><br><br>
-            你的搭配：<b id="diy-summary">-</b><br><br>
-            我们的集市摊位就在现场，<br>欢迎您来<br>
-            扫码告诉我们您的需求，<br>记录专属编号+截图获取更多优惠～
-        </p>
-        <button class="btn-primary btn-teach" onclick="goTo('home')"> 返回首页</button>
-    </div>
-</div>
-
-<!-- ==================== 结果页：购买成品 ==================== -->
-<div id="result-shop" class="page">
-    <div class="top-bar">
-        <button class="back" onclick="goTo('picker4')">← 返回修改</button>
-        <div class="title">摊位导航</div>
-        <div class="right"></div>
-    </div>
-    <div class="result-page">
-        <div class="result-icon">🏪</div>
-        <h2>来摊位找我们吧</h2>
-        <p>
-            <b style="font-size:18px;color:var(--accent-dark);">你的专属编号：<span id="user-uid-shop">-</span></b><br><br>
-            你的搭配：<b id="shop-summary">-</b><br><br>
             
-            出示此页面，摊主会根据你的选择<br>推荐最适合的成品，还有小惊喜哦～<br>
-            扫码告诉我们您的需求，<br>记录专属编号+截图获取更多优惠～
-        </p>
-        <button class="btn-primary btn-teach" onclick="goTo('home')">返回首页</button>
+            <!-- 流程结束引导 -->
+            <div class="process-cta">
+                <h3>想亲手试一试吗？</h3>
+                <p>我们为你准备了全套造纸材料包，<br>在集市摊位就能带走，回家也能造出丹寨味道。</p>
+                <button class="btn-primary" onclick="goTo('picker1')"> 去选品，挑一款喜欢的纸</button>
+            </div>
+        </div>
     </div>
-</div>
 
-<script>
-    // ========== Google Sheets API 配置 ==========
-    const SHEET_API = 'https://script.google.com/macros/s/AKfycbzHqlmqr8WTwcGleFDrYJ1rw4AOi1gKc-UajFuPW_HQfI_ZQ3IQXMn7ADwpeLEGEWJ9NA/exec';
+    <!-- ==================== 选品：纸张类型 ==================== -->
+    <div id="picker1" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('home')">← 返回首页</button>
+            <div class="title">选品引导</div>
+            <div class="right"></div>
+        </div>
+        <div class="picker-container">
+            <div class="picker-header">
+                <div class="round-tag">第 1 轮 / 共 4 轮</div>
+                <h2>先选一款纸的样子</h2>
+            </div>
+            <div class="picker-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="picker-scroll" id="scroll1">
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/草纸.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">普通草纸</div>
+                        <div class="option-desc">古法基础款，质感粗糙自然。带着植物纤维的原始肌理，写字有沙沙声，传统味道！</div>
+                        <button class="option-btn" onclick="selectOption(1, '普通草纸')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/hc.jpg"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">花草纸</div>
+                        <div class="option-desc">自然清新，自带花香肌理。干花嵌在纸浆中，每一张都是季节的礼物，留下一张书签和信纸！</div>
+                        <button class="option-btn" onclick="selectOption(1, '花草纸')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/jybz.jpg"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">金箔银箔纸</div>
+                        <div class="option-desc">光泽感强，适配个性创作。金箔碎片随机分布，像把星空揉进纸里，来做手账和装饰！</div>
+                        <button class="option-btn" onclick="selectOption(1, '金箔银箔纸')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/个性彩纸.jpg"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">个性彩纸</div>
+                        <div class="option-desc">适配多元DIY需求。大胆配色，打破传统印象，做拼贴、做装置、做潮玩周边！</div>
+                        <button class="option-btn" onclick="selectOption(1, '个性彩纸')">选择这款</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    // ========== 编号对照表（前后端统一）==========
-    const CODE_MAP = {
-        // 纸张类型
-        '普通草纸': 'PT01',
-        '花草纸': 'PT02',
-        '金箔银箔纸': 'PT03',
-        '个性彩纸': 'PT04',
-        // 香型
-        '茶香': 'SC01',
-        '咖啡香': 'SC02',
-        '无香': 'SC03',
-        'DIY香型': 'SC04',
-        // 用途
-        '书写纸': 'US01',
-        '手账本': 'US02',
-        '书签': 'US03',
-        '冰箱贴': 'US04',
-        // 最终选择
-        'DIY材料包': 'FC01',
-        '购买成品': 'FC02'
-    };
+    <!-- ==================== 选品：香型 ==================== -->
+    <div id="picker2" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('home')">← 返回首页</button>
+            <div class="title">选品引导</div>
+            <div class="right"></div>
+        </div>
+        <div class="picker-container">
+            <div class="picker-header">
+                <div class="round-tag">第 2 轮 / 共 4 轮</div>
+                <h2>再选一种纸的味道</h2>
+            </div>
+            <div class="picker-dots">
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="picker-scroll" id="scroll2">
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/茶叶.jpg"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">茶香</div>
+                        <div class="option-desc">淡雅茶香，自然治愈。像雨后茶园的气息，写字时鼻尖萦绕着龙井的清香，让人心静。</div>
+                        <button class="option-btn" onclick="selectOption(2, '茶香')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/咖啡.jpg"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">咖啡香</div>
+                        <div class="option-desc">浓郁醇厚，文艺感拉满。烘焙咖啡豆的香气渗入纸纤维，像把咖啡馆的午后装进口袋。</div>
+                        <button class="option-btn" onclick="selectOption(2, '咖啡香')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/草纸.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
 
-    // ========== 用户选择记录（用编号存储）==========
-    const selections = {
-        paperType: '',      // 如 'PT01'
-        paperName: '',      // 如 '普通草纸'
-        scent: '',          // 如 'SC01'
-        scentName: '',      // 如 '茶香'
-        usage: '',          // 如 'US01'
-        usageName: '',      // 如 '书写纸'
-        finalChoice: '',    // 如 'FC01'
-        finalName: ''       // 如 'DIY材料包'
-    };
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">无香</div>
+                        <div class="option-desc">纯粹纸香，适配书写、绘画。没有任何添加，只有植物纤维本身的淡淡草木味，最百搭。</div>
+                        <button class="option-btn" onclick="selectOption(2, '无香')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/调香.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
 
-    // ========== 页面跳转 ==========
-    function goTo(pageId) {
-        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-        document.getElementById(pageId).classList.add('active');
-        window.scrollTo(0, 0);
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">DIY香型</div>
+                        <div class="option-desc">可自行搭配香型，打造专属气味。材料包里附带香精油，按喜好滴入纸浆，属于你的独家记忆。</div>
+                        <button class="option-btn" onclick="selectOption(2, 'DIY香型')">选择这款</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        // 更新汇总页显示
-        if (pageId === 'picker4') {
-            document.getElementById('sum1').textContent = selections.paperName || '未选择';
-            document.getElementById('sum2').textContent = selections.scentName || '未选择';
-            document.getElementById('sum3').textContent = selections.usageName || '未选择';
-        }
-    }
+    <!-- ==================== 选品：用途 ==================== -->
+    <div id="picker3" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('home')">← 返回首页</button>
+            <div class="title">选品引导</div>
+            <div class="right"></div>
+        </div>
+        <div class="picker-container">
+            <div class="picker-header">
+                <div class="round-tag">第 3 轮 / 共 4 轮</div>
+                <h2>打算拿它做什么？</h2>
+            </div>
+            <div class="picker-dots">
+                <div class="dot"></div>
+                <div class="dot"></div>
+                <div class="dot active"></div>
+                <div class="dot"></div>
+            </div>
+            <div class="picker-scroll" id="scroll3">
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/书法.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
 
-    // ========== 记录选择并进入下一轮 ==========
-    function selectOption(round, value) {
-        const code = CODE_MAP[value] || '';
-        
-        if (round === 1) {
-            selections.paperType = code;
-            selections.paperName = value;
-            goTo('picker2');
-        } else if (round === 2) {
-            selections.scent = code;
-            selections.scentName = value;
-            goTo('picker3');
-        } else if (round === 3) {
-            selections.usage = code;
-            selections.usageName = value;
-            goTo('picker4');
-        }
-    }
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">书法</div>
+                        <div class="option-desc">适配毛笔、钢笔书写，质感独特。纤维粗糙让墨色有层次，写出的字有"飞白"效果，越写越有味道。</div>
+                        <button class="option-btn" onclick="selectOption(3, '书写纸')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/shouz .png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
 
-    // ========== 最终选择：上传数据到 Google Sheets ==========
-    let currentUserId = '';
-    async function submitFinalChoice(choiceName) {
-        // 记录最终选择
-        selections.finalName = choiceName;
-        selections.finalChoice = CODE_MAP[choiceName] || '';
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">手账本</div>
+                        <div class="option-desc">便携实用，记录生活点滴。手工纸内页让每一页都有温度，贴票据、画速写、写随笔都很合适。</div>
+                        <button class="option-btn" onclick="selectOption(3, '手账本')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/bxt.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
 
-        // 生成唯一用户ID
-        currentUserId = 'U' + new Date().toISOString().slice(0,10).replace(/-/g,'') 
-                     + '_' + String(Math.floor(Math.random()*900)+100).padStart(3,'0');
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">书签</div>
+                        <div class="option-desc">小巧精致，可搭配干花、印章。夹在书里每次翻页都能遇见，是读书人最温柔的仪式感。</div>
+                        <button class="option-btn" onclick="selectOption(3, '书签')">选择这款</button>
+                    </div>
+                </div>
+                <div class="option-card">
+                    <div class="option-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/冰箱贴.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
 
-        // 准备上传数据
-        const uploadData = {
-            
-            userId: currentUserId,
-            timestamp: new Date().toISOString(),
-            paperType: selections.paperName,
-            paperCode: selections.paperType,
-            scent: selections.scentName,
-            scentCode: selections.scent,
-            usage: selections.usageName,
-            usageCode: selections.usage,
-            finalChoice: selections.finalName,
-            finalCode: selections.finalChoice,
-            device: /Mobile|Android|iPhone/.test(navigator.userAgent) ? 'mobile' : 'pc'
+                    </div>
+                    <div class="option-body">
+                        <div class="option-name">冰箱贴</div>
+                        <div class="option-desc">可爱实用，装饰家居。手工纸做底，配上磁吸背板，每天开冰箱都能看见自己的手作成果。</div>
+                        <button class="option-btn" onclick="selectOption(3, '冰箱贴')">选择这款</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 选品：最终选择 ==================== -->
+    <div id="picker4" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('home')">← 返回首页</button>
+            <div class="title">最终选择</div>
+            <div class="right"></div>
+        </div>
+        <div class="picker-container">
+            <div class="picker-header">
+                <div class="round-tag">第 4 轮 / 共 4 轮</div>
+                <h2>你的专属搭配已生成</h2>
+            </div>
+
+            <div class="summary-box">
+                <h3>你的选择</h3>
+                <div class="summary-item">
+                    <span class="label">纸张</span>
+                    <span class="value" id="sum1">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">香型</span>
+                    <span class="value" id="sum2">-</span>
+                </div>
+                <div class="summary-item">
+                    <span class="label">用途</span>
+                    <span class="value" id="sum3">-</span>
+                </div>
+            </div>
+
+            <div class="edit-bar">
+                <button onclick="goTo('picker1')">修改纸张</button>
+                <button onclick="goTo('picker2')">修改香型</button>
+                <button onclick="goTo('picker3')">修改用途</button>
+            </div>
+
+            <!-- 在 picker4 页面中 -->
+
+            <div class="final-options">
+                <div class="final-card">
+                    <div class="final-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/bxt.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="final-body">
+                        <h3>带走材料包，亲手造纸</h3>
+                        <p>带走全套DIY造纸材料包，回家复刻丹寨古法造纸。包含原料、工具、说明书，零基础也能造出专属手工纸。</p>
+                        <!-- 关键修改：调用 submitFinalChoice -->
+                        <button class="option-btn" onclick="submitFinalChoice('DIY材料包')">选择DIY材料包</button>
+                    </div>
+                </div>
+                <div class="final-card">
+                    <div class="final-img img-placeholder">
+                        <img src="https://raw.githubusercontent.com/dao-wanl/danzhai-paper-market/main/picture/bxt.png"
+                            style="width:100%;height:100%;object-fit:cover;border-radius:8px;">
+                    </div>
+                    <div class="final-body">
+                        <h3>去集市摊位，挑成品</h3>
+                        <p>和我们集市摊位上心仪的手工纸物件"对话"吧～现场挑选、现场带走，还能和摊主聊聊造纸的故事。</p>
+                        <!-- 关键修改：调用 submitFinalChoice -->
+                        <button class="option-btn" onclick="submitFinalChoice('购买成品')">选择购买成品</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== 结果页：DIY材料包 ==================== -->
+    <div id="result-diy" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('picker4')">← 返回修改</button>
+            <div class="title">确认订单</div>
+            <div class="right"></div>
+        </div>
+        <div class="result-page">
+            <div class="result-icon">🎁</div>
+            <h2>材料包已加入心愿单</h2>
+            <p>
+                <b style="font-size:18px;color:var(--accent-dark);">你的专属编号：<span id="user-uid-diy">-</span></b><br><br>
+                你的搭配：<b id="diy-summary">-</b><br><br>
+                我们的集市摊位就在现场，<br>出示此页面即可领取专属优惠。<br><br>
+                也可以扫码添加微信，<br>预约邮寄到家～
+            </p>
+            <button class="btn-primary btn-teach" onclick="goTo('home')">🏠 返回首页</button>
+        </div>
+    </div>
+
+    <!-- ==================== 结果页：购买成品 ==================== -->
+    <div id="result-shop" class="page">
+        <div class="top-bar">
+            <button class="back" onclick="goTo('picker4')">← 返回修改</button>
+            <div class="title">摊位导航</div>
+            <div class="right"></div>
+        </div>
+        <div class="result-page">
+            <div class="result-icon">🏪</div>
+            <h2>来摊位找我们吧</h2>
+            <p>
+                <b style="font-size:18px;color:var(--accent-dark);">你的专属编号：<span id="user-uid-shop">-</span></b><br><br>
+                你的搭配：<b id="shop-summary">-</b><br><br>
+                摊位位置：集市主通道第3号摊位<br>
+                （认准"丹寨石桥造纸"招牌）<br><br>
+                出示此页面，摊主会根据你的选择<br>推荐最适合的成品，还有小惊喜哦～
+            </p>
+            <button class="btn-primary btn-teach" onclick="goTo('home')">🏠 返回首页</button>
+        </div>
+    </div>
+
+    <script>
+        // ========== Google Sheets API 配置 ==========
+        const SHEET_API = 'https://patient-voice-31d2.2165522161.workers.dev/';
+
+        // ========== 编号对照表（前后端统一）==========
+        const CODE_MAP = {
+            // 纸张类型
+            '普通草纸': 'PT01',
+            '花草纸': 'PT02',
+            '金箔银箔纸': 'PT03',
+            '个性彩纸': 'PT04',
+            // 香型
+            '茶香': 'SC01',
+            '咖啡香': 'SC02',
+            '无香': 'SC03',
+            'DIY香型': 'SC04',
+            // 用途
+            '书写纸': 'US01',
+            '手账本': 'US02',
+            '书签': 'US03',
+            '冰箱贴': 'US04',
+            // 最终选择
+            'DIY材料包': 'FC01',
+            '购买成品': 'FC02'
         };
 
-        // 按钮状态
-        const btn = event.target;
-        const originalText = btn.textContent;
-        btn.textContent = '提交中...';
-        btn.disabled = true;
+        // ========== 用户选择记录（用编号存储）==========
+        const selections = {
+            paperType: '',      // 如 'PT01'
+            paperName: '',      // 如 '普通草纸'
+            scent: '',          // 如 'SC01'
+            scentName: '',      // 如 '茶香'
+            usage: '',          // 如 'US01'
+            usageName: '',      // 如 '书写纸'
+            finalChoice: '',    // 如 'FC01'
+            finalName: ''       // 如 'DIY材料包'
+        };
 
-        try {
-            // 发送数据到 Google Sheets（no-cors 模式）
-            await fetch(SHEET_API, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(uploadData)
-            });
+        // ========== 页面跳转 ==========
+        function goTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo(0, 0);
 
-            // no-cors 模式下无法读取响应，但请求会成功发送
-            // 延迟一下确保数据送达
-            setTimeout(() => {
-                // 显示结果页
-                const summary = selections.paperName + ' + ' + selections.scentName + ' + ' + selections.usageName;
-                document.getElementById('diy-summary').textContent = summary;
-                document.getElementById('shop-summary').textContent = summary;
-                
-                document.getElementById('user-uid-diy').textContent = currentUserId;
-                document.getElementById('user-uid-shop').textContent = currentUserId;
-                
-                goTo(choiceName === 'DIY材料包' ? 'result-diy' : 'result-shop');
-            }, 1000);
-
-        } catch (error) {
-            console.error('提交失败:', error);
-            alert('网络有点问题，请重试一下～');
-            btn.textContent = originalText;
-            btn.disabled = false;
+            // 更新汇总页显示
+            if (pageId === 'picker4') {
+                document.getElementById('sum1').textContent = selections.paperName || '未选择';
+                document.getElementById('sum2').textContent = selections.scentName || '未选择';
+                document.getElementById('sum3').textContent = selections.usageName || '未选择';
+            }
         }
-    }
 
-    // 滑动指示器联动
-    ['scroll1','scroll2','scroll3'].forEach((id, idx) => {
-        const el = document.getElementById(id);
-        if (!el) return;
-        el.addEventListener('scroll', () => {
-            const cardWidth = el.querySelector('.option-card').offsetWidth + 16;
-            const index = Math.round(el.scrollLeft / cardWidth);
-            const dots = el.parentElement.querySelectorAll('.dot');
-            dots.forEach((d, i) => d.classList.toggle('active', i === index));
+        // ========== 记录选择并进入下一轮 ==========
+        function selectOption(round, value) {
+            const code = CODE_MAP[value] || '';
+
+            if (round === 1) {
+                selections.paperType = code;
+                selections.paperName = value;
+                goTo('picker2');
+            } else if (round === 2) {
+                selections.scent = code;
+                selections.scentName = value;
+                goTo('picker3');
+            } else if (round === 3) {
+                selections.usage = code;
+                selections.usageName = value;
+                goTo('picker4');
+            }
+        }
+        // 展开/收起功能
+        function toggleExpand(btn, contentId) {
+            const content = document.getElementById(contentId);
+            const arrow = btn.querySelector('.arrow');
+            const text = btn.querySelector('.text');
+
+            if (content.classList.contains('show')) {
+                // 收起
+                content.classList.remove('show');
+                btn.classList.remove('active');
+                arrow.style.transform = 'rotate(0deg)';
+                text.textContent = '查看详细图解';
+            } else {
+                // 展开
+                content.classList.add('show');
+                btn.classList.add('active');
+                arrow.style.transform = 'rotate(180deg)';
+                text.textContent = '收起图解';
+            }
+        }
+        // ========== 最终选择：上传数据到 Google Sheets ==========
+        let currentUserId = '';
+        async function submitFinalChoice(choiceName) {
+            // 记录最终选择
+            selections.finalName = choiceName;
+            selections.finalChoice = CODE_MAP[choiceName] || '';
+
+            // 生成唯一用户ID
+            currentUserId = 'U' + new Date().toISOString().slice(0, 10).replace(/-/g, '')
+                + '_' + String(Math.floor(Math.random() * 900) + 100).padStart(3, '0');
+
+            // 准备上传数据
+            const uploadData = {
+
+                userId: currentUserId,
+                timestamp: new Date().toISOString(),
+                paperType: selections.paperName,
+                paperCode: selections.paperType,
+                scent: selections.scentName,
+                scentCode: selections.scent,
+                usage: selections.usageName,
+                usageCode: selections.usage,
+                finalChoice: selections.finalName,
+                finalCode: selections.finalChoice,
+                device: /Mobile|Android|iPhone/.test(navigator.userAgent) ? 'mobile' : 'pc'
+            };
+
+            // 按钮状态
+            const btn = event.target;
+            const originalText = btn.textContent;
+            btn.textContent = '提交中...';
+            btn.disabled = true;
+
+            try {
+                // 发送数据到 Google Sheets（no-cors 模式）
+                await fetch(SHEET_API, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(uploadData)
+                });
+
+                // no-cors 模式下无法读取响应，但请求会成功发送
+                // 延迟一下确保数据送达
+                setTimeout(() => {
+                    // 显示结果页
+                    const summary = selections.paperName + ' + ' + selections.scentName + ' + ' + selections.usageName;
+                    document.getElementById('diy-summary').textContent = summary;
+                    document.getElementById('shop-summary').textContent = summary;
+
+                    document.getElementById('user-uid-diy').textContent = currentUserId;
+                    document.getElementById('user-uid-shop').textContent = currentUserId;
+
+                    goTo(choiceName === 'DIY材料包' ? 'result-diy' : 'result-shop');
+                }, 1000);
+
+            } catch (error) {
+                console.error('提交失败:', error);
+                alert('网络有点问题，请重试一下～');
+                btn.textContent = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // 滑动指示器联动
+        ['scroll1', 'scroll2', 'scroll3'].forEach((id, idx) => {
+            const el = document.getElementById(id);
+            if (!el) return;
+            el.addEventListener('scroll', () => {
+                const cardWidth = el.querySelector('.option-card').offsetWidth + 16;
+                const index = Math.round(el.scrollLeft / cardWidth);
+                const dots = el.parentElement.querySelectorAll('.dot');
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>
